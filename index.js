@@ -34,7 +34,7 @@ function checkFilter(compareList) {
  
 
 async function renderJobs() {
-    
+    contentContainer.innerHTML = ""
     const data = await getData();
     data.map(item => { 
       const infoNew = item.new ? `<div class="tag bg-light">New!</div>` : '';
@@ -88,7 +88,7 @@ function renderFilterBar() {
       `<div class="filter-btn" data-value="${filter}" onclick="filter(this)"><p>${filter}</p><div><i class="fas fa-times"></i></div></div>`
   );
   filters.innerHTML = '';
-  filterBarContent.forEach((item) => {
+  filterBarContent.map((item) => {
     filters.innerHTML += item;
   });
   renderJobs();
