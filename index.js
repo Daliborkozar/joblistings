@@ -28,6 +28,11 @@ const addJobsToDOM = data => {
 const renderJobs = item => {
     const infoNew = item.new ? `<div class="tag bg-light">New!</div>` : '';
     const infoFeatured = item.featured ? `<div class="tag bg-dark">Featured</div>` : '';
+    const itemFilters = [item.role, item.level, ...(item.languages || []), ...(item.tools || [])];
+    let filterContent = ''
+    itemFilters.forEach((filter) => {
+      filterContent += `<div class="filter" onclick="filter(this)" data-value="${filter}">${filter}</div>`;
+    });
     const markup =`<div class="card">
          <img src="${item.logo}" alt="logo-${item.company}"/>
          <div class="grid-item">
@@ -48,7 +53,7 @@ const renderJobs = item => {
            </div>
            <hr class="divider">
            <div class="filters">
-             filterContent
+             ${filterContent}
            </div>
          </div>
        </div>`
